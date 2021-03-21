@@ -1,0 +1,16 @@
+{
+  "configurations": {
+    "run": {
+      "adapter": "vscode-node",
+      "configuration": {
+        "request": "launch",
+        "protocol": "auto",
+        "stopOnEntry": true,
+        "console": "integratedTerminal",
+        "program": "${workspaceRoot}/bin/awaker",
+        "environment": [{ "name": "PORT", "value": 10551 }],
+        "cwd": "${workspaceRoot}"
+      }
+    }
+  }
+}

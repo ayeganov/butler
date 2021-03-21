@@ -1,0 +1,13 @@
+{
+  "extends": ["tslint-config-standard", "tslint-config-prettier"],
+  "rules": {
+    "strict-type-predicates": false,
+    "semicolon": [true, "always"],
+    "prefer-const": [true, { "destructuring": "any" }],
+    "quotemark": [true, "double"],
+    "variable-name": { "options": ["allow-snake-case"] }
+  },
+  "env": {
+    "jest": true
+  }
+}
