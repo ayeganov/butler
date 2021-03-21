@@ -34,6 +34,7 @@
     "@picovoice/porcupine-node": "^1.9.0",
     "@types/inquirer": "^7.3.1",
     "gluegun": "latest",
+    "googleapis": "^68.0.0",
     "grpc": "^1.24.5",
     "grpc-tools": "^1.10.0",
     "grpc_tools_node_protoc_ts": "^5.1.3",
