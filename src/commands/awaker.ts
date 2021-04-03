@@ -1,11 +1,9 @@
 import { GluegunCommand } from "gluegun";
-
-// const porcupine = require("@picovoice/porcupine-node");
-// const { COMPUTER } = require("@picovoice/porcupine-node/builtin_keywords");
-// const recorder = require("node-record-lpcm16");
-// import porcupine from "@picovoice/porcupine-node";
-
+import { Microphone } from "../audio/microphone_source";
+import { AudioSource } from "../audio/audio_source";
 import WakeWordDetector from "../wakeword/detector";
+
+import { Readable } from "stream";
 
 const command: GluegunCommand = {
   name: "awaker",
@@ -16,8 +14,27 @@ const command: GluegunCommand = {
 
     return new Promise(async (resolve, reject) => {
       const detector = new WakeWordDetector("computer");
-      detector.start_listening(() => {
-        print.info("COMPUTER detected");
+
+      const listener: AudioSource = new Microphone();
+      listener.configure({
+        sampleRateHertz: 16000,
+        silence: 1000,
+        threshold: 0,
+        channels: 1,
+        audioType: "raw",
+        recorder: "sox"
+      });
+
+      const stream: Readable = listener.add_reader();
+      stream.on("data", (data: Uint8Array) => {
+        detector.consume_audio(data);
+      });
+
+      const foo = new Promise((resolve, reject) => { console.log("foo"); });
+      detector.start_listening(async () => {
+        print.info("WAKEWORD detected");
+        await foo;
+        print.info("Didn't wait for foo...");
       });
 
       process.on("SIGINT", () => {

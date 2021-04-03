@@ -8,3 +8,4 @@ build
 .vscode
 *.un~
 *.sw[pdo]
+output.raw
