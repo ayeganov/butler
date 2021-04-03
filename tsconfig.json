@@ -22,7 +22,8 @@
     "target": "es5",
     "declaration": true,
     "declarationDir": "build/types",
-    "allowJs": true
+    "allowJs": true,
+    "esModuleInterop": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]
